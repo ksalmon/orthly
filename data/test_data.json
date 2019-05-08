@@ -1,0 +1,16 @@
+{
+  "appointments": [
+    { "AptNum": 123, "Op": 1, "Duration": 3600000, "AptDateTime": 1557496800},
+    { "AptNum": 123, "Op": 1, "Duration": 3600000, "AptDateTime": 1557507600},
+    { "AptNum": 123, "Op": 1, "Duration": 3600000, "AptDateTime": 1557522000}
+  ],
+
+  "operatories": [
+    { "OperatoryNum": 1, "ProvNum": 1, "ProvName": "Bill Hader" }
+  ],
+
+  "schedules": [
+    { "ScheduleNum": 999, "ProvNum": 1, "SchedDate": 1557460800, "StartTime": 28800000, "StopTime": 57600000 },
+    { "ScheduleNum": 999, "ProvNum": 2, "SchedDate": 1557460800, "StartTime": 28800000, "StopTime": 57600000 }
+  ]
+}

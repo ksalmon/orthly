@@ -1,0 +1,13 @@
+{
+  "name": "findTimes",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Kyle Salmon",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ./findTimes.js"
+  },
+  "dependencies": {
+    "date-fns": "^2.0.0-alpha.27"
+  }
+}
