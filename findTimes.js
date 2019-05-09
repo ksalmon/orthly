@@ -36,17 +36,19 @@ const findTimes = (appointments, operatories, schedules) => {
         const timeslots = generateTimeslots(60, msToTime(s.StartTime), msToTime(s.StopTime), fromUnixTime(s.SchedDate), bufferTime)
         
         timeslots.forEach(ts => {
-
-          existingAppointments.forEach(a => {
-            overlapping = areIntervalsOverlapping(
-              { start: new Date(ts.start), end: new Date(ts.end)},
-              { start: new Date(a.start), end: new Date(a.end) }
-            )
-        
-            if (!overlapping){
-              scheduleTimeSlots.push(getUnixTime(ts.start))
-            }
-          })
+          if (existingAppointments.length == 0) {
+            scheduleTimeSlots.push(getUnixTime(ts.start))
+          } else {
+            existingAppointments.forEach(a => {
+              overlapping = areIntervalsOverlapping(
+                { start: new Date(ts.start), end: new Date(ts.end)},
+                { start: new Date(a.start), end: new Date(a.end) }
+              )
+              if (!overlapping){
+                scheduleTimeSlots.push(getUnixTime(ts.start))
+              }
+            })
+          }
         })
         const ts = filter(scheduleTimeSlots)
         totalAvaliableTimeSlots.push({Ops: s.ProvNum, timeslots: ts})
@@ -55,7 +57,7 @@ const findTimes = (appointments, operatories, schedules) => {
   })
 
   console.log(totalAvaliableTimeSlots)
+  return totalAvaliableTimeSlots
 }
-
 
 findTimes( json.appointments, json.operatories, json.schedules )

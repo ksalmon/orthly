@@ -1,7 +1,7 @@
 {
   "name": "findTimes",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "findTimes.js",
   "author": "Kyle Salmon",
   "license": "MIT",
   "scripts": {
