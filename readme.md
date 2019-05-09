@@ -1,4 +1,4 @@
-# Orthly Technical Assessment 
+# Orthly
 ### Installation
 
 Requires [Node.js](https://nodejs.org/) v4+ to run.
