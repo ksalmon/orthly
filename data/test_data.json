@@ -1,9 +1,8 @@
 {
   "appointments": [
-    { "AptNum": 123, "Op": 1, "Duration": 3600000, "AptDateTime": 1557493200},
-    { "AptNum": 123, "Op": 1, "Duration": 3600000, "AptDateTime": 1557507600},
-    { "AptNum": 123, "Op": 1, "Duration": 3600000, "AptDateTime": 1557522000},
-    { "AptNum": 123, "Op": 2, "Duration": 3600000, "AptDateTime": 1557583200}
+    { "AptNum": 1, "Op": 1, "Duration": 3600000, "AptDateTime": 1557489600},
+    { "AptNum": 2, "Op": 1, "Duration": 3600000, "AptDateTime": 1557493200},
+    { "AptNum": 3, "Op": 1, "Duration": 3600000, "AptDateTime": 1557504000}
   ],
 
   "operatories": [
@@ -12,7 +11,6 @@
   ],
 
   "schedules": [
-    { "ScheduleNum": 999, "ProvNum": 1, "SchedDate": 1557460800, "StartTime": 28800000, "StopTime": 57600000 },
-    { "ScheduleNum": 888, "ProvNum": 2, "SchedDate": 1557547200, "StartTime": 28800000, "StopTime": 57600000 }
+    { "ScheduleNum": 999, "ProvNum": 1, "SchedDate": 1557460800, "StartTime": 28800000, "StopTime": 57600000 }
   ]
 }

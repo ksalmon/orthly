@@ -19,12 +19,10 @@ const msToTime = (duration) => {
 
 const dayAppointments = (day, apts) => {
   const appointments = []
-
   apts.forEach(a => {
     const dayHasAppointments = isSameDay(fromUnixTime(a.AptDateTime),fromUnixTime(day), [])
     const startRange = fromUnixTime(a.AptDateTime)
     const endRange = addMilliseconds(startRange, a.Duration)
-
     if (dayHasAppointments) {
       const aptTimes = {
         start: startRange,
@@ -37,7 +35,17 @@ const dayAppointments = (day, apts) => {
   return appointments;
 }
 
-const filter = (ts) => ts.filter((v,i) => ts.indexOf(v) === i)
+
+
+const filter = (unavailableTimeSlots, scheduleTimeSlots) => {
+  const filteredArray = scheduleTimeSlots.filter(function(x) { 
+    return unavailableTimeSlots.indexOf(x) < 0;
+  });
+
+  return removeDuplicates(filteredArray)
+}
+
+const removeDuplicates = (ts) => ts.filter((v,i) => ts.indexOf(v) === i)
 
 module.exports = {
   msToTime,

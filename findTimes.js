@@ -7,6 +7,7 @@ const {
   eachDayOfInterval, 
   addDays,
   isSameDay,
+  setHours,
   areIntervalsOverlapping
 } = require('date-fns')
 
@@ -21,36 +22,40 @@ const findTimes = (appointments, operatories, schedules) => {
         totalAvaliableTimeSlots = []
 
   const daysRange = eachDayOfInterval({
-    start: new Date(),
-    end: addDays(new Date(), defaultDayRange)
+    start: new Date().setHours(0),
+    end: addDays(new Date().setHours( 0), defaultDayRange)
   });
 
 
   daysRange.forEach((d, i) => {
     schedules.forEach((s, i) => {
-      const scheduleTimeSlots = []
       const dayHasSchedule = isSameDay(fromUnixTime(s.SchedDate), d, [])
+      const unavailableTimeSlots = []
+      const scheduleTimeSlots = []
 
       if (dayHasSchedule) {
         const existingAppointments = dayAppointments(s.SchedDate, appointments);
         const timeslots = generateTimeslots(60, msToTime(s.StartTime), msToTime(s.StopTime), fromUnixTime(s.SchedDate), bufferTime)
         
-        timeslots.forEach(ts => {
+        existingAppointments.forEach(a => {
           if (existingAppointments.length == 0) {
             scheduleTimeSlots.push(getUnixTime(ts.start))
           } else {
-            existingAppointments.forEach(a => {
+            timeslots.forEach(ts => {
               overlapping = areIntervalsOverlapping(
-                { start: new Date(ts.start), end: new Date(ts.end)},
-                { start: new Date(a.start), end: new Date(a.end) }
+                { start: new Date(a.start), end: new Date(a.end)},
+                { start: new Date(ts.start), end: new Date(ts.end)}
               )
-              if (!overlapping){
+              if (overlapping){
+                unavailableTimeSlots.push(getUnixTime(ts.start))
+              } else {
                 scheduleTimeSlots.push(getUnixTime(ts.start))
               }
             })
           }
         })
-        const ts = filter(scheduleTimeSlots)
+
+        const ts = filter(unavailableTimeSlots, scheduleTimeSlots)
         totalAvaliableTimeSlots.push({Ops: s.ProvNum, timeslots: ts})
       }
     })

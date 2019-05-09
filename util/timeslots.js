@@ -1,7 +1,3 @@
-/**
- * Generate an array of timeslots based on timeinterval
-*/
-
 const generateTimeslots = (timeInterval, startTime, endTime, date, buffer) => {
   if (timeInterval < 15 || timeInterval > 60 || timeInterval % 15 !== 0) {
     throw new Error('Can only accept 15, 30, 60')
@@ -15,7 +11,7 @@ const generateTimeslots = (timeInterval, startTime, endTime, date, buffer) => {
     30: ['00', '30'],
     60: ['00'],
   }
-  
+
   if (
     validIntervalMap[timeInterval].indexOf(startMinute) === -1 ||
     validIntervalMap[timeInterval].indexOf(endMinute) === -1
